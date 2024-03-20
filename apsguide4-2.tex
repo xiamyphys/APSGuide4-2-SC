@@ -1,0 +1,288 @@
+%% ****** Start of file apsguide4-2.tex ****** %
+%%
+%%   This file is part of the APS files in the REVTeX 4.2 distribution.
+%%   Version 4.2b of REVTeX, December 2018.
+%%
+%%   Copyright (c) 2019 The American Physical Society.
+%%
+%%   See the REVTeX 4.2 README file for restrictions and more information.
+%%
+\documentclass[twocolumn, amssymb, bibnotes, aps, prd, 10pt]{revtex4-2}
+%\usepackage{acrofont}%NOTE: Comment out this line for the release version!
+\newcommand{\revtex}{REV\hologo{TeX}}
+\newcommand{\classoption}[1]{\texttt{#1}}
+\newcommand{\macro}[1]{\texttt{\textbackslash#1}}
+\newcommand{\m}[1]{\macro{#1}}
+\newcommand{\env}[1]{\texttt{#1}}
+\setlength{\textheight}{9.5in}
+
+\usepackage[quiet]{xeCJK}
+\setCJKmainfont{Source Han Serif SC}
+\usepackage{indentfirst,hologo}
+\hologoFontSetup{general=\sffamily}
+\linespread{1.25}
+\setlength{\parindent}{2em}
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0ex \@plus\p@}%
+    \setlength\@tempdima{2.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil
+      \nobreak\hb@xt@\@pnumwidth{\hss #2%
+                                 \kern-\p@\kern\p@}\par
+    \endgroup
+  \fi}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.5em}{1.5em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{4em}{1.2em}}
+\makeatother
+
+\begin{document}
+
+\title{APS 作者指南：{\revtex} 4.2}%
+
+\author{美国物理学会[制]}\author{夏明宇[译]}
+\affiliation{1 Research Road, Ridge, NY 11961}
+\affiliation{\normalfont 杭州电子科技大学~物理系, 310018}
+\email[{\revtex} 支持：]{revtex@aps.org}\email{xiamyphys@gmail.com}
+\date{December 2018}%
+\maketitle
+\tableofcontents
+
+\section{介绍}
+发表在美国物理学会期刊上的文章在最终期刊制作过程中会转换为 \verb|XML| 文件. 其他格式（如 \verb|PDF|）会直接从构成记录的版本的 \verb|XML| 文件生成. 甚至在期刊制作之前，APS 的编辑流程也可以利用正确准备的手稿中的信息. 标题、作者、隶属关系等信息可以被自动提取并用于填充我们的手稿数据库. 参考文献也可以被筛选，交叉检查其准确性，并用于为审稿人和编辑创建链接版本. 此外，由于可以通过电子方式而非传统邮件进行传输，因此可以节省时间. 因此，精心准备的电子稿件可以增强从作者到读者的整个同行评审过程，同时降低整个过程的成本. 为此，作者在准备给 \textit{物理评论 L}、\textit{现代物理评论}、\textit{物理评论 A-E、物理评论 X、应用物理评论、物理评论流体、物理评论材料、物理评论加速器与光束}和\textit{物理评论物理教育研究} 投稿时应遵循本文档中的指南.
+ 
+本文档的更新版本将在 \url{https://journals.aps.org/revtex/} 中提供. 有关如何使用 {\revtex} 4.2 宏的更加完整说明，请参阅 {\revtex} 4.2 发行版中所包含的\textit{{\revtex} 4.2 作者指南}. 有关 {\revtex} 4.2 以及使用它投稿 APS 期刊问题可以通过电子邮件发送至 \texttt{revtex@aps.org}.
+
+\section{格式}
+\subsection{选项 \classoption{preprint}，\classoption{reprint} 和 \classoption{twocolumn}}
+{\revtex} 4.2 提供了一个 \classoption{reprint} 类选项用于以非常接近实际期刊外观的格式排版手稿. 
+值得强调的是，这只是一个\textit{近似}；经过我们的制作过程后，手稿的长度或外观可能会有很大不同. 这主要是由于字体的选择和图形的缩放导致.
+
+{\revtex} 4.2 的设计目的是让阁下只需更改类选项即可轻松地在双栏和单栏格式之间切换.
+
+作者可以使用 \classoption{reprint} 或 \classoption{twocolumn} 中的一个类选项来投稿.
+其中 \classoption{preprint} 选项主要将执行三件事：增加字体大小至 \classoption{12pt}，增加行距，将格式由双栏更改为单栏.
+
+\subsection{纸张尺寸}
+投稿至 APS 的手稿应以信纸尺寸的纸张为格式. 论文以电子稿发送给可能想要打印的审稿人. 字母大小的格式确保所有审稿人都不会遇到麻烦.
+
+\section{标记前言}
+与前言（标题，作者，机构，摘要等）标记相关的宏是或许最重要的宏. 注意正确使用 {\revtex} 4.2 宏意味着不需要也不应该使用前面内容中显示的居中环境.
+
+\subsection{标题}
+手稿的标题应由宏 \m{title} 指定. 双反斜杠 \verb|\\| 可用于在长标题中强制换行.
+
+\subsection{作者，机构和协作者}
+\label{sec:authors}
+{\revtex} 4.2 可以使直接输入的作者姓名与其隶属关系正确联系. 作者应该让 {\revtex} 4.2 完成对作者和隶属关系进行分组的工作，如果使用上标样式，还可以对隶属关系进行编号. 请遵循以下准则：
+\begin{itemize}
+\item 为每个作者名字使用单个 \m{author}. {\revtex} 4.2 将自动添加所有的逗号和单词 `and'.
+\item 使用 \m{surname} 宏明确指示作者的姓氏是否由多个名字组成，或者 family name 不是作者的姓氏.
+\item \m{email} 宏可用于指定作者的电子邮件地址，而 \m{thanks} 宏不能用于此目的. 只有电子邮件地址可以出现在宏的 \classoption{m} 参数中.
+\item \m{homepage} 宏可用于指定与作者关联的 URL. \m{thanks} 宏禁止用于此目的. 只有 URL 可以出现在宏的 \classoption{m} 参数中.
+\item \m{altaffiliation} 宏可用于指定作者的备用所属机构或临时地址. \m{thanks} 宏不能用于此目的. 只有所属机构可以出现在宏的 \classoption{m} 参数中.
+\item \m{thanks} 宏仅当上面列出的更具体的宏之一不适用时才可以使用.
+\item 对每个所属机构使用单个 \m{affiliation}.
+\item 将作者链接到所属机构的上标时，必须使用 \classoption{superscriptaddress} 类选项而不是手动输入上标.
+\item 可以使用 \m{collaboration} 宏来指定协作者. 不得使用 \m{author} 宏来指定协作者.
+\end{itemize}
+\subsection{摘要}
+
+摘要必须由 \env{abstract} 环境指定. 请注意，在 {\revtex} 4.2 中，摘要必须位于 \m{maketitle} 命令之前. {\revtex} 4.2 现在允许在摘要中使用 \env{description} 环境来提供 \textit{结构化摘要}. 例如，\textit{物理评论 C} 希望作者提供包含总结论文\hologo{TeX}tbf{背景}、\hologo{TeX}tbf{目的}、\hologo{TeX}tbf{方法}、\hologo{TeX}tbf{结果}和\hologo{TeX}tbf{结论的部分 }的摘要. 这可以通过以下方式完成：
+\begin{verbatim}
+\begin{abstract}
+  \begin{description}
+    \item[Background] 这部分将描述理解本文内容
+    所需的上下文
+    \item[Purpose] 这部分将说明本文的目的
+    \item[Method] 这部分描述了论文中使用的方法
+    \item[Results] 这部分将总结结果
+    \item[Conclusions] 这部分将陈述论文的结论
+  \end{description}
+\end{abstract}
+\end{verbatim}
+
+\section{参考和脚注}
+强烈鼓励作者在准备参考书目时使用 \hologo{BibTeX}. 如果使用 \hologo{BibTeX}，当前的论文编辑流程要求将 \texttt{.bbl} 文件直接包含到手稿的主 \texttt{.tex} 文件中. {\revtex} 4.2 附带两个用于格式化参考文献的 \hologo{BibTeX} 样式文件，一个用于 \textit{物理评论}期刊，另一个用于 \textit{现代物理评论}期刊. 在 4.2 中，\hologo{BibTeX} 样式已修改为在参考书目中显示期刊文章标题.
+
+无论是否使用 \hologo{BibTeX}，以下内容均适用.
+\begin{itemize}
+    \item 作者应该使用 \m{cite} 和 \m{bibitem} 命令来创建参考书目并引用参考书目中的项目. 应避免``手动''对参考文献进行编号.
+    \item {\revtex} 4.2 提供了新的语法，用于将多个引用合并到参考书目中的单个条目中，以及在参考文献之前和之后放置额外的文本. 请参阅 {\revtex} 4.2 发行版中包含的 \textit{{\revtex} 4.2 作者指南} 了解完整详细信息.
+    \item 脚注必须使用 \m{footnote} 宏指定. {\revtex} 4.2 将在 \textit{物理评论} 期刊的参考书目中放置脚注. 请注意，即使阁下不使用 \hologo{BibTeX}，阁下也必须运行 \hologo{BibTeX} 才能显示脚注. 不得使用 \m{footnote} 宏指定提供有关作者的附加信息（例如电子邮件地址）的脚注（请参阅章节 \ref{sec:authors}）.
+    \item 避免使用 \m{footnotemark} 和 \m{footnotetext} 来自定义脚注 [除非在表格上下文中. 参见章节 \ref{sec:tablenotes}].
+    \item 参考文献应根据 \textit{物理评论样式指南} 进行格式和指定. 请注意，使用 \hologo{BibTeX} 会自动确保这一点.
+    \item URL 应使用 \m{url} 宏指定. 如果使用 \texttt{url} 字段，\hologo{BibTeX}\ 将自动处理这个问题.
+    \item 电子打印标识符应包含在使用 \m{eprint} 宏中. 如果使用了 \texttt{eprint} 字段，\hologo{BibTeX} 将自动处理该问题.
+\end{itemize}
+
+请参阅 {\revtex} 4.2 作者指南，了解 {\revtex} 4.2 的 APS \hologo{BibTeX} 样式中的新功能，包括支持引用数据集、使用DOI代替页码的期刊，以及使用年份和发行期而不是数量来唯一识别文章的期刊，并用问题而不是数量来唯一标识文章.
+
+\section{论文正文}
+\subsection{分节和交叉引用}
+对手稿进行分节，基本规则是使用适当的分节命令（\m{section}，\m{subsection} 和 \m{subsubsection}等）.
+
+交叉引用某个部分必须使用正确的 \m{label} 和 \m{ref} 命令来完成. 不允许手动交叉引用. 不应使用 \m{part}、\m{chapter} 和 \m{subparagraph}.
+
+\subsection{附录}
+应使用 \m{appendix} 命令来指定附录，该命令使得其以下 \m{section} 命令创建的所有节都是附录. 如果手稿中只有一个附录，则应使用 \m{appendix*} 命令替代.
+
+\subsection{致谢}
+任何致谢都应被包含在 \env{acknowledgments} 环境中. 请注意，在 {\revtex} 4.2 中，这是一个环境而不是命令.
+
+\subsection{计数器}
+不得创建计数器且不得更改标准计数器. 如果方程需要特殊标签，则应使用 \m{tag} 命令（需要 \classoption{amsmath} 类选项）. 请注意，由于 \classoption{amsmath} 和 \classoption{hyperref} 之间不兼容，使用 \m{tag} 命令可能会与使用 \classoption{hyperref} 包发生冲突.
+
+\subsection{字体}
+最好避免使用较旧的 {\hologo{TeX}} 和 {\hologo{LaTeX}} 2.09 宏来控制字体，例如 \m{rm}、\m{it} 等. 相反，最好使用 {\hologo{LaTeX}} 中引入的宏. 如果使用旧的字体命令（确实应该避免它们！），请务必使用花括号来正确限制字体更改的范围. \verb+{\bf ...}+ 是正确的方法. 用于控制文本和数学字体更改的命令总结在 Table~\ref{tab:fonts} 中.
+
+\begin{table}
+\caption{\label{tab:fonts}{\hologo{LaTeXe}} 和 \hologo{AmSLaTeX} 字体总结.}
+\begin{ruledtabular}
+    \begin{tabular}{lp{2in}}
+        \m{textit} & Italics. Replaces \m{it}\\
+        \m{textbf} & Bold face. Replaces \m{bf}\\
+        \m{textrm} & Roman. Replaces \m{rm}\\
+        \m{textsl} & Slanted. Replaces \m{sl}\\
+        \m{textsc} & Small caps. Replaces \m{sc}\\
+        \m{textsf} & Sans serif. Replaces \m{sf}\\
+        \m{texttt} & Typewriter. Replaces \m{tt}\\
+        \m{textmd} & Medium series\\
+        \m{textnormal} & Normal\\
+        \m{textup} & Upright\\
+        \m{mathbf} & Bold face\\
+        \m{mathcal} & Replaces \m{cal}\\
+        \m{mathit} & Italics\\
+        \m{mathnormal} & Replaces \m{mit}\\
+        \m{mathsf} & Sans serif\\
+        \m{mathtt} & Typewriter\\
+        \m{mathfrak} & Fraktur: 需要 \classoption{amsfonts} 或 \classoption{amssymb} 类选项\\
+        \m{mathbb} & Bold blackboard: 需要 \classoption{amsfonts} 或 \classoption{amssymb} 类选项\\
+        \m{bm} & Bold Greek 和其他数学符号: 需要
+        \verb+\usepackage{bm}+ 并且会需要 \classoption{amsfonts} 类选项
+    \end{tabular}
+\end{ruledtabular}
+\end{table}
+
+粗体希腊字母和其他粗体数学符号应使用 \texttt{bm.sty} 来完成，该工具作为最新版本 {\hologo{LaTeXe}} 的必需工具分发，并应通过 \verb+\usepackage{bm}+ 加载. 这个包引入了 \m{bm} 宏. 某些粗体字符可能需要使用 \classoption{amsfonts} 类选项.
+
+新字体不能用 \m{newfont} 声明. 不允许使用用于选择字体系列、形状和系列的字体属性命令；应使用上面列出的标准 {\hologo{LaTeXe}} 字体选择宏.
+
+最后，\m{symbol} 也是被不允许的.
+
+\subsection{环境}
+\subsubsection{列表}
+允许使用标准的列表环境 \env{itemize}， \env{enumerate} 和 \env{description}. 带有或不带有可选参数的宏 \m{item} 也是被允许的. 允许自定义列表环境（使用 \m{labelstyle}、\m{labelitemi}、\m{labelenumi}、\m{itemsep} 等宏），但在编译中可能会被忽略. 广义列表 (\m{begin\{list\}}) 和普通列表 (\m{begin\{trivlist\}}) 是不被允许的.
+
+\subsubsection{其它环境}
+不允许使用 \m{newenvironment} 创建通用新环境. 但允许使用 \m{newtheorem} 创建新的定理环境.
+
+允许使用 \env{tabbing} 环境和宏 \m{=}、\m{>}、\m{`} 和 \m{'}，但在编译中可能会被忽略. 编译中使用的转换程序应该识别转义符 \m{a=}、\m{a'} 和 \m{a`}，以便在制表符环境中使用相应的重音符号.
+
+使用 \env{verbatim} 环境是被允许的.
+
+\subsection{盒子}
+大多数操作它们的盒子和宏都是不被允许的. 这其中包括 \m{raisebox}、\m{parbox}、\m{minipage}、\m{rulebox}、\m{framebox}、\m{mbox}、\m{fbox}、\m{savebox}、 \m{newsavebox}、\m{sbox}、\m{usebox} 和环境 \m{begin\{lrbox\}}. 也不允许使用 \m{rule} 生成的线.
+
+\subsubsection{旁注}
+由 \m{marginpar} 产生的旁注是被不允许的，以及关联的样式参数 \m{marginparwidth}、\m{marginparsep} 和
+\m{marginparpush}.
+
+
+\section{数学标记}
+
+一般来说，来自 {\hologo{LaTeXe}} 的所有数学标记和标准数学环境都是被允许的. 这其中包括 \env{math}，\env{displaymath}，\env{equation}，\env{eqnarray} 和 \env{eqnarray*}. 允许使用快捷键 \$、\$\$ 和 \verb|\[\]|. 此外，作者可以通过使用 \classoption{amsmath} 类选项来使用 \hologo{AmSLaTeX} 引入的几乎所有附加标记符号. 明确的例外是 \m{genfrac}、\m{boxed} 和 \m{smash}. 但 \texttt{amsextra} 和 \texttt{amsthm} 中包含的标记可能无法使用. 使用 \texttt{amscd} 包创建的交换图是可接受的.
+
+\section{图形}
+\subsection{图形内容}
+
+应使用标准 {\hologo{LaTeXe}} 宏将图形包含到 {\revtex} 4.2 手稿中. {\hologo{LaTeXe}} 包含几个功能强大的软件包，用于包含各种格式的文件. 两个主要的包是 \texttt{graphics} 和 \texttt{graphicx}. 两者都提供了一个名为 \m{includegraphics} 的宏；它们的主要区别在于控制图形放置的参数（例如缩放和旋转）如何传递到 \m{includegraphics}.
+
+\env{figure} 环境应该用于向图形添加标题，并允许 {\hologo{LaTeX}} 对图形进行编号并将其放置在最适合的位置. 如果需要在文本中引用某个图形，而不是手动对图形进行编号，则应将 \m{label} 添加到图形环境中（最佳方式是将标签放在 \m{caption} 命令的参数中）并且应该使用 \m{ref} 宏来引用此标签. 跨越页面的图形应使用 \m{figure*} 环境. \env{picture} 环境不得直接使用（当然可以包含使用 \env{picture} 环境生成的封装 PostScript 图）.
+
+\subsection{\label{sec:figplace}图形放置}
+图形应尽可能放置在靠近首次引用的位置. 无需将所有图形单独放置在手稿的末尾，作者最好将图形保留在其自然位置. 作者可能还会发现 {\revtex} 4.2 \classoption{floatfix} 类选项将是有用的，它添加了紧急浮动放置处理以避免``卡住''浮动，否则浮动体会被推迟到编译结束（并可能导致严重错误消息 \texttt{''Too many unprocessed floats''}）.
+
+\section{表格}
+\label{sec:tables}
+支持标准 {\hologo{LaTeXe}} 表格式化环境以及 \texttt{longtable} 包的使用. 表格可能会在制作过程中重新格式化，以满足 APS 风格指南. 以下是一些尝试正确设置表格格式的有用提示：
+\begin{itemize}
+\item 使用 \texttt{longtable} 包使表格在跨页处断开.
+\item 宏 \m{squeezetable} 将减小表格中的字体大小. 该宏必须出现在表环境之外的组内. 正确的标记是：
+\begin{verbatim}
+\begingroup\squeezetable
+    \begin{table}
+        ...
+    \end{table}
+\endgroup
+\end{verbatim}
+\item 尝试使用浮动选项 \texttt{H} ，这将使 {\hologo{LaTeX}} 打破页面之间的浮动. 然而使用 \env{longtable} 设置长表格更好.
+\begin{verbatim}
+\begin{table}[H]
+  \begin{ruledtabular}
+    \begin{tabular}
+        ...
+    \end{tabular}
+  \end{ruledtabular}
+\end{table}
+\end{verbatim}
+\end{itemize}
+
+\subsection{双线和表格格式}
+{\revtex} 4.2 提供了 \env{ruledtabular} 环境，可以自动将 刻痕线（双线）置于表格周围，
+并将所有封闭的 \env{tabular} 环境格式化为全宽表格并改善列间距. 必要时应尽可能使用此环境.
+
+\subsection{宽表格}
+使用 \classoption{twocolumn} 选项排版时，表格可以跨越单栏或双栏. 使用 \env{table} 或 \env{longtable} 环境的 '\verb+*+' Boolean 值会生成跨列的宽表.
+
+在横向（旋转 90 度）下排版效果更好的非常宽的表格应该包含在 \env{turnpage} 环境中. 这将旋转表格并将其置于其页面上. 注意某些 dvi 预览器可能无法正确显示表格，但 \texttt{dvips} 和 \texttt{pdflatex} 可以正常工作.
+
+\subsection{表格位置}
+表格应尽可能靠近首次引用的位置放置. 没有必要将所有表格单独放在手稿的末尾，这对于 APS 目的来说是不可取的. 类选项 \classoption{floatfix} 可能对于表格放置和图形放置很有帮助（请参阅章节~\ref{sec:figplace}）.
+
+\subsection{按小数点对齐列}
+应使用标准 {\hologo{LaTeXe}} 宏包 \classoption{dcolumn} 来完成此操作.
+
+\subsection{表格脚注}
+\label{sec:tablenotes}
+表格中的脚注（tablenotes）应使用 \m{footnote} 宏. 但如果需要多次引用同一脚注，可以使用 \m{footnotetext} 和 \m{footnotemark}. 这将产生插入表格下方而不是参考部分或页面底部的注释（用小写罗马字母标记）.
+
+\section{作者定义宏}
+作者可以定义方便的宏来减少敲字次数. 这意味着宏不能调用 {\hologo{TeX}} 宏，例如 \m{if} 或其他依赖于上下文的命令. 此外，{\hologo{LaTeXe}} 还提供了三个用于声明新命令的宏：\m{providecommand}、\m{newcommand} 和 \m{renewcommand}（以及它们的``\verb+*+'' Boolean 值）. 这些是可以使用的. 作者不得使用 {\hologo{TeX}} 的低级命令 \m{def}、\m{edef} 和 \m{gdef}.
+
+\section{总结}
+为了确保能够最佳使用 {\hologo{TeX}} 手稿，作者需要遵循本指南. 在制作过程中可能会忽略使用低级格式化命令来精细控制水平和垂直间距，甚至更糟糕的是，无法将手稿转换为 XML. 作者应该使事情尽可能简单并正确使用适当的 {\revtex} 4.2 或 {\hologo{LaTeXe}} 宏. 有关使用的任何问题可直接联系 \texttt{revtex@aps.org}.
+
+\appendix\onecolumngrid
+
+\section*{译者记}
+
+{\revtex}是一个略显冷门的文档类——至少到目前为止，用户手册刚刚迎来了中译版. 本人目前就读于杭州电子科技大学2021级光电信息科学与工程专业，本科期间加入了学校物理系的研究生凝聚态方向课题组，发表 PRB、PRL 期刊的居多，而网上刚好又没有一份像样的 {\revtex} 作者指南中文版，于是便有了这份文档.
+
+本文档及其源码已同步至 GitHub:  
+
+可能这份文档对\hologo{LaTeX} 开发者们来说无非就是多了份资料罢了（甚至都不需要这份中译版），但是对于希望各位基本没有接触过\hologo{LaTeX} 的物理系研究生们，确是一份不可多得的资源. 希望能够通过这份文档让这类物理系研究生们快速上手使用 {\revtex} 文档类.
+
+\begin{center}
+    「一项新工作,若可能用四页纸解释清楚,那么我会试一试 PRL。」
+
+    \hfill ——文小刚
+\end{center}
+
+本打算将本手册的中译版压缩至4页纸，凑成一篇``PRL''（笑），奈何受限于西文字体和中文字体的区别，在单倍行距下实在难以直视，所以最终放弃了这个想法. 由于本人能力有限，在翻译过程中难免会产生些许词法、句式错误，还恳请各位多多指教. 最后，祝各位物理er多发文章！
+
+\vfill\raggedleft
+Hsia Mingyu
+
+Hangzhou in Late Spring 2024
+
+
+\end{document}
+
