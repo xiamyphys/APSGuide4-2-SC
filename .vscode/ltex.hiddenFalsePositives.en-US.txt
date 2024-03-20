@@ -1,1 +1,0 @@
-{"rule":"LC_AFTER_PERIOD","sentence":"^\\Q粗体希腊字母和其他粗体数学符号应使用 bm.sty 来完成，该工具作为最新版本 的必需工具分发，并应通过 \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q 加载.\\E$"}
